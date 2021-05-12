@@ -64,7 +64,7 @@ function App() {
     const { data: walletData, error } = await new Wallet().init({
       networkName: Network.testnet,
       chain: Chain.near,
-      apiKey: "API_KEY",
+      apiKey: "",
     });
 
     if (error) return;
@@ -72,13 +72,9 @@ function App() {
     const { wallet, isConnected } = walletData;
 
     if (isConnected) {
-      try {
-        const { data: details } = await wallet.details();
+      const { data: details } = await wallet.details();
 
-        setDetails(details);
-      } catch (error) {
-        window.location.reload();
-      }
+      setDetails(details);
     }
 
     setWallet(wallet);
