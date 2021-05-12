@@ -1,129 +1,135 @@
-import { useEffect, useState } from 'react';
-import MintbaseLogo from './MintbaseLogo';
-import './App.css';
-import { Wallet, Chain, Network } from 'mintbase';
-import styled from 'styled-components';
+import { useEffect, useState } from "react";
+import MintbaseLogo from "./MintbaseLogo";
+import "./App.css";
+import { Wallet, Chain, Network } from "mintbase";
+import styled from "styled-components";
 
 const Container = styled.div`
-	text-align: center;
-	max-width: 100vw;
+  text-align: center;
+  max-width: 100vw;
 `;
 
 const Header = styled.div`
-	background-color: #282c34;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 `;
 
 const Link = styled.a`
-	color: white;
+  color: white;
 `;
 
 const LogoContainer = styled.div`
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const ButtonsContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Button = styled.button`
-	height: 50px;
-	margin: 10px;
+  height: 50px;
+  margin: 10px;
 `;
 
 const DetailsContainer = styled.div`
-	max-width: 300px;
+  max-width: 300px;
 `;
 
 const Details = styled.p`
-	font-size: 18px;
+  font-size: 18px;
 `;
 
 function App() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [details, setDetails] = useState<{
-		accountId: string;
-		balance: string;
-		allowance: string;
-		contractName: string;
-	}>();
-	const [wallet, setWallet] = useState<Wallet>(new Wallet({ chain: Chain.near, networkName: Network.testnet }));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [details, setDetails] =
+    useState<{
+      accountId: string;
+      balance: string;
+      allowance: string;
+      contractName: string;
+    }>();
+  const [wallet, setWallet] = useState<Wallet | null>(null);
 
-	const initWallet = async () => {
-		const wallet = new Wallet({ chain: Chain.near, networkName: Network.testnet });
-		await wallet.connect({ requestSignIn: false });
-		setWallet(wallet);
-	};
+  const initWallet = async () => {
+    const { data: walletData, error } = await new Wallet().init({
+      networkName: Network.testnet,
+      chain: Chain.near,
+      apiKey: "",
+    });
 
-	const handleConnect = async (shouldRequest: boolean) => {
-		if (!wallet) return;
-		await wallet.connect({ requestSignIn: shouldRequest || false });
-	};
+    if (error) return;
 
-	const handleDisconnect = (shouldRequest: boolean) => {
-		if (!wallet) return;
-		wallet.disconnect();
-		window.location.reload();
-	};
+    const { wallet, isConnected } = walletData;
 
-	const handleIsConnected = async () => {
-		if (!wallet) return;
-		try {
-			const details = await wallet.details();
-			setDetails(details);
-		} catch (error) {
-			window.location.reload();
-		}
-	};
+    if (isConnected) {
+      try {
+        const { data: details } = await wallet.details();
 
-	useEffect(() => {
-		initWallet();
-	}, []);
+        setDetails(details);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-	useEffect(() => {
-		if (!wallet) return;
+    setWallet(wallet);
+    setIsLoggedIn(isConnected);
+  };
 
-		if (wallet.isConnected()) {
-			setIsLoggedIn(true);
+  const handleConnect = async (shouldRequest: boolean) => {
+    if (!wallet) return;
+    await wallet.connect({ requestSignIn: shouldRequest || false });
+  };
 
-			handleIsConnected();
-		}
-	}, [wallet]);
+  const handleDisconnect = () => {
+    if (!wallet) return;
+    wallet.disconnect();
+    window.location.reload();
+  };
 
-	return (
-		<Container>
-			<Header>
-				<LogoContainer>
-					<MintbaseLogo />
-					<Link href="https://github.com/mintbase/mintbase-js">Mintbase.js</Link>
-				</LogoContainer>
+  useEffect(() => {
+    initWallet();
+  }, []);
 
-				<p>{isLoggedIn ? 'You are connected!' : 'You are disconnected!'}</p>
+  return (
+    <Container>
+      <Header>
+        <LogoContainer>
+          <MintbaseLogo />
+          <Link href="https://github.com/mintbase/mintbase-js">
+            Mintbase.js
+          </Link>
+        </LogoContainer>
 
-				{isLoggedIn && details && (
-					<DetailsContainer>
-						<Details>Account: {details?.accountId}</Details>
-						<Details>Balance: {details?.balance} N</Details>
-					</DetailsContainer>
-				)}
+        <p>{isLoggedIn ? "You are connected!" : "You are disconnected!"}</p>
 
-				<ButtonsContainer>
-					{!isLoggedIn && <Button onClick={() => handleConnect(true)}>Connect</Button>}
-					{isLoggedIn && <Button onClick={() => handleDisconnect(true)}>Disconnect</Button>}
-				</ButtonsContainer>
-			</Header>
-		</Container>
-	);
+        {isLoggedIn && details && (
+          <DetailsContainer>
+            <Details>Account: {details?.accountId}</Details>
+            <Details>Balance: {details?.balance} N</Details>
+          </DetailsContainer>
+        )}
+
+        <ButtonsContainer>
+          {!isLoggedIn && (
+            <Button onClick={() => handleConnect(true)}>Connect</Button>
+          )}
+          {isLoggedIn && (
+            <Button onClick={() => handleDisconnect()}>Disconnect</Button>
+          )}
+        </ButtonsContainer>
+      </Header>
+    </Container>
+  );
 }
 
 export default App;
