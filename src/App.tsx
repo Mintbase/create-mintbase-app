@@ -72,9 +72,13 @@ function App() {
     const { wallet, isConnected } = walletData;
 
     if (isConnected) {
-      const { data: details } = await wallet.details();
+      try {
+        const { data: details } = await wallet.details();
 
-      setDetails(details);
+        setDetails(details);
+      } catch (error) {
+        console.log(error);
+      }
     }
 
     setWallet(wallet);
