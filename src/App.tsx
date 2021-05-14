@@ -64,10 +64,12 @@ function App() {
     const { data: walletData, error } = await new Wallet().init({
       networkName: Network.testnet,
       chain: Chain.near,
-      apiKey: "",
+      apiKey: "1deeae7f-a3cb-4479-9b18-f657e75ccc82",
     });
 
-    if (error) return;
+    if (error) {
+      console.error(error);
+    }
 
     const { wallet, isConnected } = walletData;
 
