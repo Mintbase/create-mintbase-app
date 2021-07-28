@@ -17,6 +17,7 @@ const Home = () => {
       {/* <Navbar /> */}
       <Hero />
       <Products storeId='wildeverse.mintbase1.near' />
+      <Products storeId='hellovirtualworld.mintbase1.near' />
       <Footer />
     </>
   )
