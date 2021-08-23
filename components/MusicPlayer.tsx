@@ -49,7 +49,11 @@ const MusicPlayer = () => {
   }, [data])
 
   return (
-    <>{musicList.length > 0 && <PlayerWithNoSSR audioLists={musicList} />}</>
+    <>
+      {musicList.length > 0 && (
+        <PlayerWithNoSSR audioLists={musicList} autoPlay={false} />
+      )}
+    </>
   )
 }
 
