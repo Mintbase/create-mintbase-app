@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import Products from '../components/Products'
 import MusicPlayer from '../components/MusicPlayer'
+import Minter from '../components/Minter'
 
 const Home = () => {
   return (
@@ -17,9 +18,10 @@ const Home = () => {
       <Header />
       {/* <Navbar /> */}
       <Hero />
-      <Products storeId="wildeverse.mintbase1.near" />
-      <Products storeId="hellovirtualworld.mintbase1.near" />
+      {/* <Products storeId="wildeverse.mintbase1.near" /> */}
+      {/* <Products storeId="hellovirtualworld.mintbase1.near" /> */}
       <MusicPlayer />
+      <Minter />
       <Footer />
     </>
   )
