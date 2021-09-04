@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client'
 import { gql } from 'apollo-boost'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { useWallet } from '../services/providers/MintbaseWalletContext'
 
 const FETCH_STORE = gql`
   query FetchStore($storeId: String!, $limit: Int = 20, $offset: Int = 0) {
@@ -18,7 +19,7 @@ const FETCH_STORE = gql`
 
       tokens(
         order_by: { thingId: asc }
-        where: { storeId: { _eq: $storeId }, burnedAt: { _is_null: true } }
+        where: { storeId: { _eq: $storeId }, burnedAt: { _is_null: true }, list: {removedAt: {_is_null: true}}}
         limit: $limit
         offset: $offset
         distinct_on: thingId
@@ -29,8 +30,12 @@ const FETCH_STORE = gql`
           id
           metaId
           memo
-          tokens {
+          tokens(distinct_on: id, where: {list: {removedAt: {_is_null: true}}}) {
             minter
+            id
+            list {
+              price
+            }
           }
           metadata {
             title
@@ -42,7 +47,24 @@ const FETCH_STORE = gql`
   }
 `
 
-const NFT = ({ media, title }: { media: string; title: string }) => {
+const useBuy = (tokenID: string, tokenPrice: string) => {
+  const { wallet } = useWallet();
+  const tokenPriceNumber = Number(tokenPrice) ;
+  tokenPrice = (tokenPriceNumber).toLocaleString('fullwide', {useGrouping:false})
+  const buy = () => {
+    // create marketAddress env variable for testnet/mainnet
+    // wallet?.makeOffer(tokenID,tokenPrice,{ marketAddress: process.env.marketAddress})
+    wallet?.makeOffer(tokenID,tokenPrice)
+  }
+  return buy;
+}
+
+const NFT = ({ media, title, tokens }: { media: string; title: string; tokens: Token[] }) => {
+  //const NFT = ({ media, title }: { media: string; title: string}) => {
+  const { wallet, isConnected, details } = useWallet();
+
+  const buy = useBuy(tokens[0]['id'],tokens[0].list.price) ;
+  
   return (
     <div className="w-full md:w-1/2 lg:w-1/3 p-3 mb-4">
       <div className="h-96">
@@ -51,6 +73,11 @@ const NFT = ({ media, title }: { media: string; title: string }) => {
             <Image alt={title} src={media} layout="fill" objectFit="contain" />
           </a>
         </div>
+        <div>
+         { isConnected &&
+         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={buy}>Buy</button>
+         }
+         </div>
       </div>
     </div>
   )
@@ -70,12 +97,20 @@ type Store = {
 
 type Thing = {
   id: string
+  tokens: Token[]
   metadata: {
     title: string
     media: string
   }
   memo: string
   metaId: string
+}
+
+type Token = {
+  id: string
+    list: {
+      price: string
+    }
 }
 
 const Products = ({ storeId }: { storeId: string }) => {
@@ -117,6 +152,7 @@ const Products = ({ storeId }: { storeId: string }) => {
                 key={thing.metaId}
                 title={thing.metadata.title}
                 media={thing.metadata.media}
+                tokens={thing.tokens}
               />
             ))}
           </div>

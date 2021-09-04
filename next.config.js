@@ -12,4 +12,7 @@ module.exports = {
       'abs.twimg.com',
     ],
   },
+  env: {
+    NETWORK: process.env.NETWORK,
+  },
 }

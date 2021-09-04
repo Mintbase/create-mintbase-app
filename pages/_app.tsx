@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/client'
 import { useApollo } from '../services/apolloClient'
 
 import 'tailwindcss/tailwind.css'
+import { Network } from 'mintbase'
 
 import {
   GRAPH_MAINNET_HTTPS_URI,
@@ -22,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   })
 
   return (
-    <WalletProvider apiKey={process.env.NEXT_PUBLIC_MINTBASEJS_API_KEY || ''}>
+    <WalletProvider apiKey={process.env.NEXT_PUBLIC_MINTBASEJS_API_KEY || ''} network={Network[process.env.NETWORK as keyof typeof Network]}>
       <ApolloProvider client={apolloClient}>
         <Component {...pageProps} />
       </ApolloProvider>

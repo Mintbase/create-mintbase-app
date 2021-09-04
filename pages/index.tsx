@@ -18,10 +18,10 @@ const Home = () => {
       <Header />
       {/* <Navbar /> */}
       <Hero />
-      {/* <Products storeId="wildeverse.mintbase1.near" /> */}
+      <Products storeId="wildeverse.mintbase1.near" />
       {/* <Products storeId="hellovirtualworld.mintbase1.near" /> */}
-      <MusicPlayer />
-      <Minter />
+      {/* <MusicPlayer /> */}
+      {/* <Minter /> */}
       <Footer />
     </>
   )
