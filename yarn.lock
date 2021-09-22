@@ -2905,10 +2905,10 @@ minimist@^1.1.1, minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
 
-mintbase@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/mintbase/-/mintbase-0.2.1.tgz#a5f3364cc87a327ceb29718dc48b01b3eb2c8bc8"
-  integrity sha512-ne0RypLVKg/EEnnnBq3qbq8C0yb6hBletyFTzaVzLLkv0PqELKVYJxy1pL3hd1dwVMhRiJQN1fZbKQDFsajV1A==
+mintbase@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/mintbase/-/mintbase-0.3.0.tgz#97ee93b40b1528e720197d328e1b31f0d453fe20"
+  integrity sha512-LQ1Pm6AJd2uZTy8rnJaZptUVDzUAZoib4ouCgRHWLqMv/Lvrod5KyZPG9QCl1w6zLDO23oY4s0TjI+Jz51yskw==
   dependencies:
     bn.js "^5.2.0"
     browser-or-node "^1.3.0"
