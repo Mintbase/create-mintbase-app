@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar'
 
 import { useWallet } from '../services/providers/MintbaseWalletContext'
+import { MbButton, MbAction, EState } from 'mintbase-ui'
 
 import Link from 'next/link'
 import Image from 'next/image'
@@ -21,15 +22,12 @@ const Hero = () => {
             Build everything you imagine
           </h1>
           <p className="text-md md:text-lg text-center text-white ">
-            Cheap, scalable and flexible infrastructure for your NFT project
+            Cheap & scalable infrastructure for your NFT project
           </p>
 
-          <a
-            href="https://mintbase.io/developers"
-            className="mt-6 inline-block bg-white text-black no-underline px-4 py-3 hover:shadow-2xl"
-          >
-            Learn how
-          </a>
+          <Link href="https://docs.mintbase.io/dev/getting-started" passHref>
+            <MbAction state={EState.ACTIVE}>Learn how</MbAction>
+          </Link>
         </div>
       </div>
     </>

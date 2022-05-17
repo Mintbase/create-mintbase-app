@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useWallet } from '../services/providers/MintbaseWalletContext'
+import { MbButton } from 'mintbase-ui'
 
 const Header = () => {
   const { wallet, isConnected, details } = useWallet()
@@ -19,8 +20,8 @@ const Header = () => {
                 Hi, {wallet?.activeAccount?.accountId}
               </p>
             )}
-            <button
-              className="inline-block no-underline bg-black text-white text-sm py-2 px-3"
+            <MbButton
+              label={isConnected ? 'Disconnect' : 'Connect'}
               onClick={
                 isConnected
                   ? () => {
@@ -31,9 +32,7 @@ const Header = () => {
                       wallet?.connect({ requestSignIn: true })
                     }
               }
-            >
-              {isConnected ? 'Disconnect' : 'Connect'}
-            </button>
+            />
           </div>
         </div>
       </div>

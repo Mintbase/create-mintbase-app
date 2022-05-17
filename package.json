@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "l.int": "next lint"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
@@ -19,9 +19,10 @@
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
     "mintbase": "0.3.0",
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "mintbase-ui": "^0.1.2",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-hook-form": "^7.13.0",
     "react-jinke-music-player": "^4.24.1",
     "subscriptions-transport-ws": "^0.9.19"

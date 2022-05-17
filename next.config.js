@@ -12,4 +12,5 @@ module.exports = {
       'abs.twimg.com',
     ],
   },
+  swcMinify: true,
 }

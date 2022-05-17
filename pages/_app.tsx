@@ -9,6 +9,7 @@ import {
   GRAPH_MAINNET_HTTPS_URI,
   GRAPH_TESTNET_HTTPS_URI,
 } from '../constants/mintbase'
+import Base from '../components/Layout/Base'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const apolloClient = useApollo({
@@ -24,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <WalletProvider apiKey={process.env.NEXT_PUBLIC_MINTBASEJS_API_KEY || ''}>
       <ApolloProvider client={apolloClient}>
-        <Component {...pageProps} />
+        <Base>
+          <Component {...pageProps} />
+        </Base>
       </ApolloProvider>
     </WalletProvider>
   )
