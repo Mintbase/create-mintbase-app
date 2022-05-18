@@ -2,7 +2,7 @@ const Container = ({
   children,
   className = '',
 }: {
-  children: JSX.Element
+  children: JSX.Element[] | JSX.Element
   className?: string
 }) => <div className={`mx-24 md:mx-64 ${className}`}>{children}</div>
 
