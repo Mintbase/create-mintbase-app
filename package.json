@@ -18,7 +18,7 @@
     "apollo-link-ws": "^1.0.20",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
-    "mintbase": "0.3.0",
+    "mintbase": "0.5.0",
     "mintbase-ui": "^0.1.2",
     "next": "^12.1.6",
     "react": "^18.1.0",
