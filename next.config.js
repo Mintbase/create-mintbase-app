@@ -13,7 +13,6 @@ module.exports = {
       'abs.twimg.com',
     ],
   },
-  swcMinify: true,
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     if (isServer) {
       config.externals = ['react', ...config.externals]
