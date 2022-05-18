@@ -1,5 +1,6 @@
+const path = require('path')
+
 module.exports = {
-  reactStrictMode: true,
   images: {
     domains: [
       'arweave.net',
@@ -13,4 +14,16 @@ module.exports = {
     ],
   },
   swcMinify: true,
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    if (isServer) {
+      config.externals = ['react', ...config.externals]
+    }
+    config.resolve.alias['react'] = path.resolve(
+      __dirname,
+      '.',
+      'node_modules',
+      'react'
+    )
+    return config
+  },
 }
