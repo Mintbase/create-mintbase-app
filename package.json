@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "l.int": "next lint"
+    "lint": "next lint"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
@@ -18,10 +18,11 @@
     "apollo-link-ws": "^1.0.20",
     "deepmerge": "^4.2.2",
     "lodash": "^4.17.21",
-    "mintbase": "0.3.0",
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "mintbase": "0.5.0",
+    "mintbase-ui": "^0.1.2",
+    "next": "^12.1.6",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "react-hook-form": "^7.13.0",
     "react-jinke-music-player": "^4.24.1",
     "subscriptions-transport-ws": "^0.9.19"
@@ -29,11 +30,11 @@
   "devDependencies": {
     "@types/lodash": "^4.14.171",
     "@types/react": "17.0.14",
-    "autoprefixer": "^10.3.1",
+    "autoprefixer": "^10.4.7",
     "eslint": "7.30.0",
     "eslint-config-next": "11.0.1",
-    "postcss": "^8.3.5",
-    "tailwindcss": "^2.2.4",
+    "postcss": "^8.4.13",
+    "tailwindcss": "^3.0.24",
     "typescript": "4.3.5"
   }
 }
