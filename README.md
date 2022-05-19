@@ -1,11 +1,27 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMintbase%2Fcreate-mintbase-app)
 
+
+# Mintbase Boilerplate and Starter for Next JS 12+, Tailwind CSS 3 and TypeScript
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMintbase%2Fcreate-mintbase-app)
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+### Features
 
-## Getting Started
+Developer experience first:
+
+- ⚡ [Next.js](https://nextjs.org) for Static Site Generator
+- 🔥 Type checking [TypeScript](https://www.typescriptlang.org)
+- 💎 Integrate with [Tailwind CSS](https://tailwindcss.com)
+- ✅ Strict Mode for TypeScript and React 18
+- 📏 Linter with [ESLint](https://eslint.org) (default NextJS, NextJS Core Web Vitals, Tailwind CSS and Airbnb configuration)
+- 💖 Code Formatter with [Prettier](https://prettier.io)
+- 🧱 Integrated with MintbaseJS [MintbaseJS](https://github.com/mintbase/mintbase-js)
+
+- 🖼 Integrated with MintbaseUI [MintbaseUI](https://github.com/mintbase/mintbase-ui)
+
+### Getting Started
 
 First, run the development server:
 
