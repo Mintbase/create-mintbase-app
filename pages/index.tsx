@@ -14,7 +14,7 @@ const links = [
   {
     href: 'https://docs.mintbase.io/dev/getting-started',
     title: 'Documentation',
-    description: 'Find in-depth information about Mintbase features and API',
+    description: 'Find in-depth information about Mintbase features and API.',
   },
   {
     href: '',
@@ -37,12 +37,12 @@ const Home = () => {
       </Head>
       <Hero />
 
-      <Container className="flex justify-center mt-24">
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
+      <Container className="flex justify-center my-24">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-8 md:gap-12">
           {links.map((link, index) => (
             <Link href={link.href} key={'link' + index} passHref>
               <a>
-                <div className="w-80 h-48">
+                <div className="flex w-auto max-w-64 h-full">
                   <Card title={link.title} description={link.description} />
                 </div>
               </a>

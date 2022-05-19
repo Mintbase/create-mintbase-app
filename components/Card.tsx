@@ -8,7 +8,7 @@ const Card = ({
   description: string
 }) => {
   return (
-    <div className="max-w-sm flex flex-col w-full lg:max-w-full h-full rounded bg-mb-background hover:bg-gray-700 cursor-pointer p-4 hover:transition-all ease-in-out duration-700">
+    <div className="flex flex-col w-full h-full rounded bg-mb-background hover:bg-gray-700 cursor-pointer p-4 hover:transition-all ease-in-out duration-700">
       <div>
         <MbText className="h3-130 text-white">{title}</MbText>
       </div>
