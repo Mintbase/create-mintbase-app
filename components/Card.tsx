@@ -1,5 +1,5 @@
-import { MbText } from 'mintbase-ui'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './Card.module.css'
 
 const Card = ({
@@ -18,7 +18,9 @@ const Card = ({
   return (
     <div className={styles.card}>
     <div className={styles.text}>
+    <Link href="/project/birds-of-berlin">
         <h2>{title}</h2>
+        </Link>
         <h3>{description}</h3>
       </div>
       <Image

@@ -6,7 +6,6 @@ background-color: gray;
     align-items: center;
     justify-content: center;
     gap: 2ch;
-    background-image: url("pic.png");
 }
 
 .explore {

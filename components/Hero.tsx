@@ -7,8 +7,7 @@ import styles from './Hero.module.css'
 const Hero = () => {
   const { wallet, isConnected, details } = useWallet()
   return (
-        <div className={styles.hero} style={{backgroundImage: `url("pic.png")` }}>
-          <img src="pic.png" alt="" />
+        <div className={styles.hero}>
           <MbText className="heading-130 text-white">
             Empowering Citizen Scientists
           </MbText>
