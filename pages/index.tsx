@@ -14,11 +14,9 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
-        { !isConnected &&
       <Container className="flex justify-center my-24" >
          <InputForm></InputForm>
       </Container>
-        }
     </>
   )
 }
