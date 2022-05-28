@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import { useWallet } from '../services/providers/MintbaseWalletContext'
-import { MbButton } from 'mintbase-ui'
+import WalletConnectButton from './WalletConnectButton'
+import styles from './Header.module.css'
 
 const Header = () => {
   const { wallet, isConnected, details } = useWallet()
   return (
-    <header className="w-full px-6 bg-white">
-      <div className="container mx-auto max-w-8xl md:flex justify-between items-center">
+    <header className={styles.header}>
         <Link href="/" passHref>
           <a className="py-6 w-full text-center md:text-left md:w-auto text-gray-600 no-underline flex justify-center items-center">
-            Mintbase Engineering
+            Research Hub
           </a>
         </Link>
 
@@ -20,22 +20,10 @@ const Header = () => {
                 Hi, {wallet?.activeAccount?.accountId}
               </p>
             )}
-            <MbButton
-              label={isConnected ? 'Disconnect' : 'Connect'}
-              onClick={
-                isConnected
-                  ? () => {
-                      wallet?.disconnect()
-                      window.location.reload()
-                    }
-                  : () => {
-                      wallet?.connect({ requestSignIn: true })
-                    }
-              }
-            />
+                        <WalletConnectButton />
+
           </div>
         </div>
-      </div>
     </header>
   )
 }

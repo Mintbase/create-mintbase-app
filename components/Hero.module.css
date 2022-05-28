@@ -1,0 +1,14 @@
+.hero {
+background-color: gray;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2ch;
+}
+
+.explore {
+    position: absolute;
+    bottom: 5%;
+}

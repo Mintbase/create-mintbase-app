@@ -1,0 +1,14 @@
+
+.projectHero {
+    background-color: gray;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2ch;
+    padding: 5%;
+}
+
+.projectHero h2 {
+    font-size: 7ch;
+}
