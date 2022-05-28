@@ -6,9 +6,9 @@ import InputForm from '../../components/InputForm'
 import {useWallet} from "../../services/providers/MintbaseWalletContext";
 import Header from '../../components/Header';
 import Card from '../../components/Card';
-import birdPic from '../../components/bird-hero.webp'
-import kidsPic from '../../components/kids.jpeg'
-import forestPic from '../../components/forest.webp'
+import birdPic from '../../assets/bird-hero.webp'
+import kidsPic from '../../assets/kids.jpeg'
+import forestPic from '../../assets/forest.webp'
 
 
 const Home = () => {

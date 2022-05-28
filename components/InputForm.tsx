@@ -1,21 +1,25 @@
 import { useWallet } from '../services/providers/MintbaseWalletContext'
 import * as nearAPI from "near-api-js";
 import {useState} from "react";
+import Image from "next/image";
+import styles from "./Card.module.css";
+import {Alert, AlertTitle, Button, Box, Container, TextField, Typography} from "@mui/material";
 
 const InputForm = () => {
     const {wallet, isConnected, details} = useWallet()
     const [uploadedFile, setUploadedFile] = useState(null);
     const [observedDetails, setObservedDetails] = useState("");
+    const [observedLocation, setObservedLocation] = useState("");
     const [base64String, setBase64String] = useState("");
     const [arweaveUri, setArweaveUri] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // upload(base64String)
-        //     .then(arweaveUri => mintNFT(arweaveUri))
-        //     .then(contractResponse => console.log(contractResponse))
-        //     .catch(err => console.log('There was an error:' + err));
-        mintAssetToNft().then(contractResponse => console.log(contractResponse)).catch(err => console.log('There was an error:' + err));
+        upload(base64String)
+            .then(arweaveUri => mintNFT(arweaveUri))
+            .then(contractResponse => console.log(contractResponse))
+            .catch(err => console.log('There was an error:' + err));
+        // mintAssetToNft().then(contractResponse => console.log(contractResponse)).catch(err => console.log('There was an error:' + err));
     }
 
     const getBase64 = (file) => {
@@ -181,23 +185,61 @@ const InputForm = () => {
     return (
         <>
             <div className="w-full">
+                <Typography variant="h4" component="h4" sx={{ m: 2 }}>
+                    Provide your bird data
+                </Typography>
+                <Typography variant="h6" component="h6" sx={{ m: 2 }}>
+                    Facilitate environmental science with your contribution
+                </Typography>
                 <form onSubmit={handleSubmit}>
-                    <label>
-                        Field Observations:
-                        <input
-                            type="text"
-                            value={observedDetails}
-                            onChange={e => setObservedDetails(e.target.value)}
+                    <TextField
+                        helperText="Please enter any noticeable observations"
+                        label="Field observations"
+                        onChange={e => setObservedDetails(e.target.value)}
+                        sx={{ m: 2 }}
+                    />
+                    <br/>
+                        <TextField
+                            helperText="Please enter where you spotted the bird"
+                            label="Location of Observation"
+                            onChange={e => setObservedLocation(e.target.value)}
+                            sx={{ m: 2 }}
                         />
-                    </label>
                     <br/>
-                    <label>
-                        Upload file:
-                        <input type="file" onChange={handleFileInputChange}/>
-                    </label>
+                    <Button
+                        variant="contained"
+                        component="label"
+                        sx={{ m: 2 }}
+                    >
+                        <input
+                            type="file"
+                            onChange={handleFileInputChange}
+                        />
+                    </Button>
                     <br/>
-                    <button type="submit">Submit</button>
+                    <Button variant="outlined" type="submit" sx={{ m: 2 }}>Submit</Button>
                 </form>
+                { arweaveUri &&
+                <div className="results">
+                    <Alert severity="success">
+                        <AlertTitle>File uploaded to Arweave!</AlertTitle>
+                        Your observation has been contributed to science — <strong>it will stay accessible forever!</strong>
+                    </Alert>
+                    <Container maxWidth="sm">
+                        <Image
+                            src={arweaveUri}
+                            alt="Picture of the observed bird"
+                            layout='intrinsic'
+                            width={200}
+                            height={200}
+                            objectFit='cover'
+                            objectPosition="center"
+                            className={styles.image}
+                            sx={{ m: 2 }}
+                        />
+                    </Container>
+                </div>
+                    }
             </div>
         </>
     )

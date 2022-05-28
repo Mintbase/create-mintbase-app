@@ -15,6 +15,9 @@
     color: darkblue;
     position: relative;
     z-index: 1;
+    background-color: #e4e1dea8;
+    padding: 4px;
+    border-radius: 4px;
 }
 
 .text h2 {

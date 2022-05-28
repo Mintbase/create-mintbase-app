@@ -12,7 +12,7 @@ const Hero = () => {
             Birds of Berlin
           </h2>
           <h3 >
-            Project description.
+            NABU Germany is compiling a study on our domestic birds. Support them by providing visual proof of the observed bird, your observations at the time and the location it was seen.
           </h3>
         </div>
   )

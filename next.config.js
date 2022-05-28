@@ -11,6 +11,7 @@ module.exports = {
       'twitter.com',
       'source.unsplash.com',
       'abs.twimg.com',
+      'www.arweave.net'
     ],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
