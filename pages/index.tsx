@@ -17,7 +17,7 @@ const links = [
     description: 'Find in-depth information about Mintbase features and API.',
   },
   {
-    href: '',
+    href: 'https://github.com/mintbase/examples',
     title: 'Examples',
     description: 'Discover and deploy boilerplate example Mintbase projects.',
   },
