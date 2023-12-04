@@ -1,4 +1,4 @@
-# Examples like this now live under our [templates](https://github.com/mintbase/templates) repo
+# ⚠️ Examples like this now live under our [templates](https://github.com/mintbase/templates) repo
 
 # Mintbase Boilerplate and Starter for Next JS 12+, Tailwind CSS 3 and TypeScript
 
